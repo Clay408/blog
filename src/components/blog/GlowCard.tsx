@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useRef, useState } from 'react';
 import Link from 'next/link';
 import { formatDate } from '@/lib/utils';
@@ -27,13 +26,12 @@ export function GlowCard({ post }: GlowCardProps) {
 
   return (
     <Link href={post.url} className="block">
-      <motion.div
+      <div
         ref={cardRef}
-        whileHover={{ scale: 1.01 }}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="glow-card relative rounded-xl bg-[var(--card)] overflow-hidden"
+        className="glow-card relative rounded-xl bg-[var(--card)] overflow-hidden hover:scale-[1.01] transition-transform duration-300"
         style={{
           border: '1px solid transparent',
           background: 'linear-gradient(var(--card), var(--card)) padding-box, linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4) border-box',
@@ -203,7 +201,7 @@ export function GlowCard({ post }: GlowCardProps) {
             100% { top: 100%; }
           }
         `}</style>
-      </motion.div>
+      </div>
     </Link>
   );
 }

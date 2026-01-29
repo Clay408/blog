@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useState, useMemo } from 'react';
 import { GlowCard } from './GlowCard';
 import { CategoryFilter } from './CategoryFilter';
@@ -64,12 +63,8 @@ export function ArticleList({ posts }: ArticleListProps) {
                 const isLeft = index % 2 === 0;
 
                 return (
-                  <motion.div
+                  <div
                     key={post._id}
-                    initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: '-100px' }}
-                    transition={{ duration: 0.6, delay: index * 0.1, ease: 'easeOut' }}
                     className="relative group"
                   >
                     {/* 时间轴节点 */}
@@ -95,7 +90,7 @@ export function ArticleList({ posts }: ArticleListProps) {
                         {!isLeft && <GlowCard post={post} />}
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 );
               })
             )}

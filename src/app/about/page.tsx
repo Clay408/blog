@@ -1,16 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
-
 export default function AboutPage() {
   return (
     <div className="container mx-auto px-4 py-12">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="max-w-3xl mx-auto"
-      >
+      <div className="max-w-3xl mx-auto">
         <h1 className="mb-8 text-4xl font-bold text-[var(--card-foreground)] sm:text-5xl">
           About Me
         </h1>
@@ -36,13 +29,9 @@ export default function AboutPage() {
               { category: 'Backend', skills: ['Node.js', 'Python', 'PostgreSQL'] },
               { category: 'Tools', skills: ['Git', 'Docker', 'VS Code'] },
               { category: 'Learning', skills: ['Three.js', 'WebGL', 'AI/ML'] },
-            ].map((item, index) => (
-              <motion.div
+            ].map((item) => (
+              <div
                 key={item.category}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-4"
               >
                 <h3 className="mb-2 font-semibold text-[var(--card-foreground)]">
@@ -58,7 +47,7 @@ export default function AboutPage() {
                     </span>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 
@@ -77,21 +66,19 @@ export default function AboutPage() {
               { name: 'Twitter', url: 'https://twitter.com' },
               { name: 'LinkedIn', url: 'https://linkedin.com' },
             ].map((social) => (
-              <motion.a
+              <a
                 key={social.name}
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
                 className="rounded-full border border-[var(--border)] bg-[var(--card)] px-6 py-3 font-medium text-[var(--card-foreground)] transition-colors hover:bg-[var(--secondary)]"
               >
                 {social.name}
-              </motion.a>
+              </a>
             ))}
           </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

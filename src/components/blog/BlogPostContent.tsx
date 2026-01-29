@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { MDXContent } from './MDXContent';
 import { formatDate } from '@/lib/utils';
@@ -13,12 +12,7 @@ interface BlogPostContentProps {
 export function BlogPostContent({ post }: BlogPostContentProps) {
   return (
     <div className="container mx-auto px-4 py-12">
-      <motion.article
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="max-w-3xl mx-auto"
-      >
+      <article className="max-w-3xl mx-auto">
         {/* Back button */}
         <Link
           href="/blog"
@@ -42,21 +36,11 @@ export function BlogPostContent({ post }: BlogPostContentProps) {
 
         {/* Article header */}
         <header className="mb-8">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="mb-4 text-4xl font-bold text-[var(--card-foreground)] sm:text-5xl"
-          >
+          <h1 className="mb-4 text-4xl font-bold text-[var(--card-foreground)] sm:text-5xl">
             {post.title}
-          </motion.h1>
+          </h1>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex flex-wrap items-center gap-4 text-sm text-[var(--muted-foreground)]"
-          >
+          <div className="flex flex-wrap items-center gap-4 text-sm text-[var(--muted-foreground)]">
             <time dateTime={post.date.toString()}>
               {formatDate(post.date)}
             </time>
@@ -75,30 +59,18 @@ export function BlogPostContent({ post }: BlogPostContentProps) {
                 </div>
               </>
             )}
-          </motion.div>
+          </div>
 
           {post.description && (
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="mt-4 text-lg text-[var(--muted-foreground)]"
-            >
+            <p className="mt-4 text-lg text-[var(--muted-foreground)]">
               {post.description}
-            </motion.p>
+            </p>
           )}
         </header>
 
         {/* Article content */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="prose prose-invert max-w-none"
-        >
-          <MDXContent code={post.body.code} />
-        </motion.div>
-      </motion.article>
+        <MDXContent code={post.body.code} />
+      </article>
     </div>
   );
 }

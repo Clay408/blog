@@ -38,5 +38,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
-  return <BlogPostContent post={post} />;
+  // 将 post 数据序列化传递给客户端组件
+  return <BlogPostContent post={JSON.parse(JSON.stringify(post))} />;
 }

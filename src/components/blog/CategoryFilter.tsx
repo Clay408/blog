@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 interface CategoryFilterProps {
@@ -18,10 +17,8 @@ export function CategoryFilter({ categories, selectedCategory, onSelectCategory,
         !isSidebar && 'flex-row items-center justify-center flex-wrap'
       )}>
         {/* 全部文章按钮 */}
-        <motion.button
+        <button
           onClick={() => onSelectCategory(null)}
-          whileHover={{ scale: 1.02, x: 4 }}
-          whileTap={{ scale: 0.98 }}
           className={cn(
             'relative px-5 py-3 text-sm font-medium rounded-xl transition-all duration-300 text-left w-full group overflow-hidden',
             selectedCategory === null
@@ -62,18 +59,13 @@ export function CategoryFilter({ categories, selectedCategory, onSelectCategory,
             </svg>
             全部文章
           </span>
-        </motion.button>
+        </button>
 
         {/* 分类按钮 */}
-        {categories.map((category, index) => (
-          <motion.button
+        {categories.map((category) => (
+          <button
             key={category}
             onClick={() => onSelectCategory(category)}
-            whileHover={{ scale: 1.02, x: 4 }}
-            whileTap={{ scale: 0.98 }}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: index * 0.05 }}
             className={cn(
               'relative px-5 py-3 text-sm font-medium rounded-xl transition-all duration-300 text-left w-full group overflow-hidden',
               selectedCategory === category
@@ -138,7 +130,7 @@ export function CategoryFilter({ categories, selectedCategory, onSelectCategory,
                 100% { left: 200%; }
               }
             `}</style>
-          </motion.button>
+          </button>
         ))}
       </div>
     </div>

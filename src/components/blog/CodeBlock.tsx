@@ -1,28 +1,21 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import React from 'react';
 
-interface CodeBlockProps {
-  children: React.ReactNode;
+interface CodeBlockProps extends React.HTMLAttributes<HTMLPreElement> {
+  children?: React.ReactNode;
   className?: string;
-  [key: string]: any;
 }
 
 export function CodeBlock({ children, className, ...props }: CodeBlockProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.3 }}
-      className="group relative"
-    >
+    <div className="group relative">
       <pre
         className={className}
         {...props}
       >
         {children}
       </pre>
-    </motion.div>
+    </div>
   );
 }
