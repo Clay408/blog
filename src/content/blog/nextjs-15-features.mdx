@@ -1,0 +1,65 @@
+---
+title: 'Exploring Next.js 15 Features'
+description: 'Discover the latest features and improvements in Next.js 15, including enhanced App Router and React 19 support.'
+date: 2024-01-05
+tags: ['nextjs', 'react', 'web-development']
+---
+
+# Exploring Next.js 15 Features
+
+Next.js 15 brings exciting new features and improvements to the framework. Let's explore what's new!
+
+## React 19 Support
+
+Next.js 15 includes support for React 19, bringing with it all the latest improvements and features from the React team.
+
+## Enhanced App Router
+
+The App Router continues to improve with better:
+
+- **Server Actions** - More streamlined server-side mutations
+- **Partial Prerendering** - Improved performance with selective rendering
+- **Improved Data Fetching** - Better patterns for fetching data
+
+## Improved Performance
+
+Next.js 15 includes several performance improvements:
+
+```typescript
+// app/page.tsx
+async function getData() {
+  const res = await fetch('https://api.example.com/data', {
+    next: { revalidate: 3600 } // Cache for 1 hour
+  });
+  return res.json();
+}
+
+export default async function Page() {
+  const data = await getData();
+
+  return (
+    <main>
+      <h1>Latest Data</h1>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </main>
+  );
+}
+```
+
+## Better TypeScript Support
+
+TypeScript integration has been improved with better type inference and fewer configuration needs.
+
+## Turbopack (Stable)
+
+Turbopack is now stable for Next.js development, providing faster build times:
+
+```bash
+next dev --turbopack
+```
+
+## Conclusion
+
+Next.js 15 is a significant update that brings improved performance, better developer experience, and support for the latest React features.
+
+Upgrade your projects and start enjoying these improvements today!

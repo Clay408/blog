@@ -1,0 +1,37 @@
+---
+title: 'TypeScript 高级技巧与最佳实践'
+description: '深入探讨 TypeScript 的高级类型系统、泛型、条件类型等特性，以及在实际项目中的最佳实践。'
+date: 2024-12-10
+tags: ['typescript', 'frontend', 'tutorial']
+---
+
+# TypeScript 高级技巧与最佳实践
+
+TypeScript 是 JavaScript 的超集，它为我们提供了强大的类型系统。让我们深入探讨一些高级特性。
+
+## 高级类型
+
+### 条件类型
+
+```typescript
+type NonNullable<T> = T extends null | undefined ? never : T;
+
+type ApiResponse<T> = T extends string
+  ? { message: T }
+  : { data: T };
+```
+
+### 模板字面量类型
+
+```typescript
+type EventName<T extends string> = `on${Capitalize<T>}`;
+
+type ClickEvent = EventName<'click'>; // 'onClick'
+```
+
+## 最佳实践
+
+1. **优先使用 interface** 而不是 type（大多数情况下）
+2. **使用字面量类型** 提高类型精度
+3. **避免使用 any**，使用 unknown 代替
+4. **合理使用泛型** 提高代码复用性

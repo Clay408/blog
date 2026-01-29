@@ -1,0 +1,59 @@
+---
+title: 'Web 性能优化完全指南'
+description: '全面介绍前端性能优化的各种技巧和工具，帮助你打造极速的 Web 应用。'
+date: 2024-10-08
+tags: ['performance', 'optimization', 'frontend']
+---
+
+# Web 性能优化完全指南
+
+性能优化是提升用户体验的关键因素。
+
+## 加载性能
+
+### 资源压缩
+
+```javascript
+// next.config.js
+module.exports = {
+  compress: true,
+  swcMinify: true,
+}
+```
+
+### 代码分割
+
+```typescript
+import dynamic from 'next/dynamic';
+
+const HeavyComponent = dynamic(() => import('./HeavyComponent'), {
+  loading: () => <div>Loading...</div>
+});
+```
+
+## 运行时性能
+
+### 虚拟列表
+
+处理大量数据时，只渲染可见区域的元素。
+
+### 防抖与节流
+
+```typescript
+function debounce<T extends (...args: any[]) => any>(
+  fn: T,
+  delay: number
+): (...args: Parameters<T>) => void {
+  let timeoutId: NodeJS.Timeout;
+  return (...args) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => fn(...args), delay);
+  };
+}
+```
+
+## 性能监控
+
+- Core Web Vitals (LCP, FID, CLS)
+- Lighthouse
+- WebPageTest

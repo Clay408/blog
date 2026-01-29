@@ -1,0 +1,52 @@
+---
+title: 'React Hooks 完全指南'
+description: '从 useState 到自定义 Hooks，全面掌握 React Hooks 的使用方法和最佳实践。'
+date: 2024-11-28
+tags: ['react', 'hooks', 'frontend']
+---
+
+# React Hooks 完全指南
+
+React Hooks 改变了我们编写 React 组件的方式。让我们深入了解这些强大的工具。
+
+## 常用 Hooks
+
+### useState 和 useEffect
+
+```typescript
+import { useState, useEffect } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    document.title = `Count: ${count}`;
+  }, [count]);
+
+  return <button onClick={() => setCount(c => c + 1)}>{count}</button>;
+}
+```
+
+### 自定义 Hooks
+
+```typescript
+function useLocalStorage<T>(key: string, initialValue: T) {
+  const [value, setValue] = useState<T>(() => {
+    const item = localStorage.getItem(key);
+    return item ? JSON.parse(item) : initialValue;
+  });
+
+  const setStoredValue = (value: T) => {
+    setValue(value);
+    localStorage.setItem(key, JSON.stringify(value));
+  };
+
+  return [value, setStoredValue] as const;
+}
+```
+
+## Hooks 规则
+
+1. 只在函数顶层调用 Hooks
+2. 只在 React 函数组件或自定义 Hooks 中调用
+3. 使用 ESLint 插件强制执行这些规则

@@ -1,0 +1,47 @@
+---
+title: 'Node.js Streams 详解'
+description: '深入理解 Node.js Streams 的工作原理，包括可读流、可写流、双工流和转换流。'
+date: 2024-10-22
+tags: ['nodejs', 'backend', 'streams']
+---
+
+# Node.js Streams 详解
+
+Streams 是 Node.js 中处理流式数据的强大工具。
+
+## Stream 类型
+
+1. **Readable** - 可读流
+2. **Writable** - 可写流
+3. **Duplex** - 双工流（可读可写）
+4. **Transform** - 转换流
+
+## 示例：文件复制
+
+```typescript
+import { createReadStream, createWriteStream } from 'fs';
+
+const readStream = createReadStream('input.txt');
+const writeStream = createWriteStream('output.txt');
+
+readStream.pipe(writeStream);
+```
+
+## 自定义 Transform Stream
+
+```typescript
+import { Transform } from 'stream';
+
+const upperCaseTransform = new Transform({
+  transform(chunk, encoding, callback) {
+    this.push(chunk.toString().toUpperCase());
+    callback();
+  }
+});
+```
+
+## 为什么使用 Streams？
+
+- 内存效率：处理大文件时不需要全部加载到内存
+- 时间效率：数据到达即可处理，无需等待全部加载
+- 可组合性：可以通过 pipe 连接多个流

@@ -1,0 +1,63 @@
+---
+title: 'Docker 容器化入门'
+description: '从零开始学习 Docker，包括镜像构建、容器管理、Docker Compose 等核心概念。'
+date: 2024-09-25
+tags: ['docker', 'devops', 'containers']
+---
+
+# Docker 容器化入门
+
+Docker 让应用程序的部署变得简单而一致。
+
+## 基础命令
+
+```bash
+# 构建镜像
+docker build -t myapp:latest .
+
+# 运行容器
+docker run -p 3000:3000 myapp:latest
+
+# 查看运行中的容器
+docker ps
+
+# 停止容器
+docker stop <container-id>
+```
+
+## Dockerfile 示例
+
+```dockerfile
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci --only=production
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["node", "server.js"]
+```
+
+## Docker Compose
+
+```yaml
+version: '3.8'
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+```
+
+## 优势
+
+- 环境一致性
+- 快速部署
+- 资源隔离
+- 易于扩展

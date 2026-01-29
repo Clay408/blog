@@ -1,0 +1,82 @@
+---
+title: 'Getting Started with React Three Fiber'
+description: 'Learn how to create stunning 3D graphics in your React applications using React Three Fiber.'
+date: 2024-01-10
+tags: ['react', 'threejs', 'webgl', 'tutorial']
+---
+
+# Getting Started with React Three Fiber
+
+React Three Fiber is a React renderer for Three.js, making it easier to create 3D graphics in your React applications.
+
+## What is React Three Fiber?
+
+React Three Fiber allows you to write Three.js code in a declarative way using React components. It's like React for the 3D world!
+
+## Installation
+
+First, install the required packages:
+
+```bash
+npm install three @react-three/fiber @react-three/drei
+```
+
+## Basic Setup
+
+Here's a simple example of creating a rotating cube:
+
+```tsx
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
+
+function RotatingCube() {
+  return (
+    <mesh>
+      <boxGeometry />
+      <meshStandardMaterial color="blue" />
+    </mesh>
+  );
+}
+
+function App() {
+  return (
+    <Canvas>
+      <ambientLight intensity={0.5} />
+      <pointLight position={[10, 10, 10]} />
+      <RotatingCube />
+      <OrbitControls />
+    </Canvas>
+  );
+}
+```
+
+## Adding Animation
+
+Use the `useFrame` hook to create animations:
+
+```tsx
+import { useRef } from 'react';
+import { useFrame } from '@react-three/fiber';
+
+function AnimatedBox() {
+  const meshRef = useRef<THREE.Mesh>(null);
+
+  useFrame((state, delta) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.x += delta;
+      meshRef.current.rotation.y += delta * 0.5;
+    }
+  });
+
+  return (
+    <mesh ref={meshRef}>
+      <boxGeometry />
+      <meshStandardMaterial color="hotpink" />
+    </mesh>
+  );
+}
+```
+
+## Conclusion
+
+React Three Fiber makes it easy to bring 3D graphics to your React applications. Start experimenting and create something amazing!

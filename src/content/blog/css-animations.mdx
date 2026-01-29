@@ -1,0 +1,48 @@
+---
+title: 'CSS 动画与过渡效果实战'
+description: '学习如何使用 CSS 创建流畅的动画和过渡效果，包括 keyframes、transition 和 animation 属性。'
+date: 2024-11-15
+tags: ['css', 'animation', 'design']
+---
+
+# CSS 动画与过渡效果实战
+
+流畅的动画能够提升用户体验，让界面更加生动。
+
+## Transition（过渡）
+
+```css
+.button {
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+```
+
+## Animation（动画）
+
+```css
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: fadeIn 0.5s ease-out;
+}
+```
+
+## 性能优化
+
+- 使用 `transform` 和 `opacity`（触发 GPU 加速）
+- 避免动画 `width`、`height`、`top`、`left`
+- 使用 `will-change` 提示浏览器优化
