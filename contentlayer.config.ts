@@ -68,7 +68,7 @@ export default makeSource({
             node.properties.className = ['char--highlighted'];
           },
         },
-      ],
+      ] as any, // 类型断言解决 vfile 版本冲突
     ],
   },
 });
