@@ -45,6 +45,7 @@ const Post = defineDocumentType(() => ({
 export default makeSource({
   contentDirPath: './src/content/blog',
   documentTypes: [Post],
+  disableImportAliasWarning: true,
   mdx: {
     remarkPlugins: [],
     rehypePlugins: [

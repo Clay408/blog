@@ -11,7 +11,8 @@ const nextConfig: NextConfig = {
 };
 
 export default withContentlayer(nextConfig, {
-  turbopack: {},
+  // 禁用 Turbopack，Contentlayer 需要 Webpack
+  turbopack: false,
   // 启用静态导出用于 GitHub Pages
   output: 'export',
 });
