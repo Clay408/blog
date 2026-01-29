@@ -1,9 +1,13 @@
 import type { NextConfig } from "next";
 import { withContentlayer } from 'next-contentlayer';
 
+// GitHub Pages 部署时需要 basePath，本地开发不需要
+const isProd = process.env.NODE_ENV === 'production';
+const basePath = isProd ? '/blog' : '';
+
 const nextConfig: NextConfig = {
-  // GitHub Pages 部署到子路径，需要配置 basePath
-  basePath: '/blog',
+  // GitHub Pages 部署到子路径时配置 basePath
+  basePath,
   // GitHub Pages 不支持 Next.js Image Optimization，需要禁用
   images: {
     unoptimized: true,
