@@ -10,7 +10,7 @@ export default function AboutPage() {
 
         <div className="space-y-6 text-[var(--muted-foreground)]">
           <p className="text-lg">
-            Hi! I'm Zhe, a passionate software developer and tech enthusiast.
+            Hi! I&apos;m Zhe, a passionate software developer and tech enthusiast.
           </p>
 
           <p>
@@ -56,7 +56,7 @@ export default function AboutPage() {
           </h2>
 
           <p>
-            Feel free to reach out if you'd like to collaborate or just have a
+            Feel free to reach out if you&apos;d like to collaborate or just have a
             chat about technology!
           </p>
 

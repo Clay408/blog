@@ -49,6 +49,15 @@ export function ParticleBackground() {
     // Detect if mobile and reduce particle count for performance
     const isMobile = window.innerWidth < 768;
     setParticleCount(isMobile ? 2000 : 5000);
+
+    // Update particle count on window resize
+    const handleResize = () => {
+      const isMobile = window.innerWidth < 768;
+      setParticleCount(isMobile ? 2000 : 5000);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (

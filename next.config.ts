@@ -13,6 +13,7 @@ export default withContentlayer({
   },
   // 启用静态导出用于 GitHub Pages
   output: 'export',
-  // 禁用 React 严格模式以避免兼容性问题
+  // React Strict Mode 暂时禁用 - Contentlayer MDX 组件在严格模式下有兼容性问题
+  // 这是一个已知问题，等待 Contentlayer 迁移到 Content Collections 后解决
   reactStrictMode: false,
 });

@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef, useState, useCallback } from 'react';
 import Link from 'next/link';
 import { formatDate } from '@/lib/utils';
 import type { Post } from '.contentlayer/generated';
@@ -13,16 +13,32 @@ export function GlowCard({ post }: GlowCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
+  const rafRef = useRef<number | null>(null);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
 
     const rect = cardRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    setMousePosition({ x, y });
-  };
+    // Use requestAnimationFrame to throttle updates
+    if (rafRef.current === null) {
+      rafRef.current = requestAnimationFrame(() => {
+        setMousePosition({ x, y });
+        rafRef.current = null;
+      });
+    }
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setIsHovered(false);
+    // Cancel any pending animation frame
+    if (rafRef.current !== null) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
+  }, []);
 
   return (
     <Link href={post.url} className="block">
@@ -30,7 +46,7 @@ export function GlowCard({ post }: GlowCardProps) {
         ref={cardRef}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseLeave={handleMouseLeave}
         className="glow-card relative rounded-xl bg-[var(--card)] overflow-hidden hover:scale-[1.01] transition-transform duration-300"
         style={{
           border: '1px solid transparent',

@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a personal technical blog built with Next.js, featuring interactive 3D particle background effects using Three.js/React Three Fiber. Content is managed through MDX files and processed by Contentlayer for type-safe content transformation.
 
-**Tech Stack:** Next.js 16, React 19, TypeScript, Three.js, React Three Fiber, Contentlayer, MDX, Tailwind CSS 4, Framer Motion
+**Tech Stack:** Next.js 15, React 18, TypeScript, Three.js, React Three Fiber, Contentlayer, MDX, Tailwind CSS 4, Framer Motion
 
 ## Development Commands
 
@@ -58,6 +58,12 @@ The 3D particle background is implemented with:
 - `src/components/3d/Canvas.tsx` - Dynamic wrapper with `ssr: false` (prevents SSR issues with Three.js)
 - `src/components/3d/ParticleBackground.tsx` - Three.js scene using React Three Fiber
 - Particle count adapts: 5000 on desktop, 2000 on mobile (performance optimization)
+- Includes resize listener to dynamically adjust particle count when window size changes
+
+### Error Handling
+
+- `src/components/layout/ErrorBoundary.tsx` - Error boundary wrapper for 3D components to prevent crashes from breaking the entire page
+- Canvas component is wrapped with ErrorBoundary and Suspense for graceful degradation
 
 ### Styling System
 

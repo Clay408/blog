@@ -1,14 +1,12 @@
-'use client';
-
 import { allPosts } from '.contentlayer/generated';
 import { ArticleList } from '@/components/blog/ArticleList';
 
-export default function BlogPage() {
-  // Sort posts by date
-  const posts = allPosts.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
+// Sort posts by date at build time
+const posts = allPosts.sort(
+  (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+);
 
+export default function BlogPage() {
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="mb-12">

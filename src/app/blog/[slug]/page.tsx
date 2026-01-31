@@ -38,6 +38,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
-  // 将 post 数据序列化传递给客户端组件
-  return <BlogPostContent post={JSON.parse(JSON.stringify(post))} />;
+  // Extract only the serializable data needed for the client component
+  const { title, description, date, tags, body } = post;
+  const serializedPost = {
+    title,
+    description,
+    date,
+    tags,
+    body,
+  };
+
+  return <BlogPostContent post={serializedPost} />;
 }

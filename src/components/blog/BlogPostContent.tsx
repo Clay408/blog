@@ -3,10 +3,21 @@
 import Link from 'next/link';
 import { MDXContent } from './MDXContent';
 import { formatDate } from '@/lib/utils';
-import type { Post } from '.contentlayer/generated';
+
+interface PostBody {
+  code: string;
+}
+
+interface SerializedPost {
+  title: string;
+  description: string;
+  date: Date | string;
+  tags?: string[];
+  body: PostBody;
+}
 
 interface BlogPostContentProps {
-  post: Post;
+  post: SerializedPost;
 }
 
 export function BlogPostContent({ post }: BlogPostContentProps) {

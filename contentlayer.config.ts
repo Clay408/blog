@@ -1,4 +1,4 @@
-import { defineDocumentType, defineNestedType, makeSource } from 'contentlayer/source-files';
+import { defineDocumentType, makeSource } from 'contentlayer/source-files';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -56,19 +56,23 @@ export default makeSource({
         {
           theme: 'github-dark',
           keepBackground: false,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           onVisitLine(node: any) {
             if (node.children.length === 0) {
               node.children = [{ type: 'text', value: ' ' }];
             }
           },
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           onVisitHighlightedLine(node: any) {
             node.properties.className?.push('line--highlighted');
           },
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           onVisitHighlightedChars(node: any) {
             node.properties.className = ['char--highlighted'];
           },
         },
-      ] as any, // 类型断言解决 vfile 版本冲突
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ] as any, // Type assertion needed due to vfile version conflict between dependencies
     ],
   },
 });
